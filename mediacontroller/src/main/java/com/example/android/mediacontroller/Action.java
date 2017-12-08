@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.media.RatingCompat;
 import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -155,6 +156,17 @@ public class Action {
             @Override
             public void run(@NonNull MediaControllerCompat controller, String id, Bundle extras) {
                 controller.getTransportControls().play();
+            }
+        });
+        actions.add(action);
+
+        action = new Action("Shuffle On");
+        action.setMediaControllerAction(new MediaControllerAction() {
+            @Override
+            public void run(@NonNull MediaControllerCompat controller, String id, Bundle extras) {
+                controller.getTransportControls().setShuffleMode(PlaybackStateCompat.SHUFFLE_MODE_ALL);
+                int shuffleMode = controller.getShuffleMode();
+                Log.d("fsdj", "mode: " + shuffleMode);
             }
         });
         actions.add(action);

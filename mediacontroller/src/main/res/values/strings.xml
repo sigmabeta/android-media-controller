@@ -57,6 +57,7 @@
     <string name="action_prepare_search">Prepare from search</string>
 
     <string name="action_play">Play</string>
+    <string name="action_shuffle">Shuffle</string>
     <string name="action_play_uri">Play URI</string>
     <string name="action_play_id">Play media ID</string>
     <string name="action_play_search">Play from search</string>

@@ -335,6 +335,7 @@ public class MediaAppControllerActivity extends AppCompatActivity {
         final PreparePlayHandler preparePlayHandler = new PreparePlayHandler(this);
         findViewById(R.id.action_prepare).setOnClickListener(preparePlayHandler);
         findViewById(R.id.action_play).setOnClickListener(preparePlayHandler);
+        findViewById(R.id.action_shuffle).setOnClickListener(new ShuffleHandler(this));
 
         mAudioFocusHelper = new AudioFocusHelper(this,
                 (ToggleButton) findViewById(R.id.audio_focus_button),
@@ -525,6 +526,28 @@ public class MediaAppControllerActivity extends AppCompatActivity {
                             mInputTypeView.getSelectedItemPosition());
             }
 
+            if (mController != null) {
+                final String data = mUriInput.getText().toString();
+                action.getMediaControllerAction().run(mController, data, null);
+            }
+        }
+    }
+
+    private class ShuffleHandler implements View.OnClickListener {
+
+        private final List<Action> mPreparePlayActions;
+
+        private ShuffleHandler(final Context context) {
+            mPreparePlayActions = Action.createPreparePlayActions(context);
+        }
+
+        @Override
+        public void onClick(final View button) {
+
+            final Action action;
+            action = mPreparePlayActions.get(8);
+
+            Log.d("fsdj", "action: " + action.getName());
             if (mController != null) {
                 final String data = mUriInput.getText().toString();
                 action.getMediaControllerAction().run(mController, data, null);
